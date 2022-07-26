@@ -72,6 +72,18 @@ class Bookshelf {
       }
     });
   }
+
+  findByCategory() {
+    let query = `SELECT tentheloai,tensach,mota,hinhanh FROM theloai inner join sach on theloai.id = sach.theloai_id`
+    return Promise((resolve,reject)=> {
+      this.connection.query(query,(err,data) => {
+        if(err) {
+          reject(err)
+        } 
+          resolve(data)
+      })
+    })
+  }
 }
 
 module.exports = Bookshelf;

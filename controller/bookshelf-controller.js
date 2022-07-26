@@ -111,6 +111,21 @@ class BookshelfController {
       return res.end();
     });
   }
+
+  findCategoryBook(req,res,id) {
+    fs.readFile('/views/index.html')
+    let data = '';
+    req.on('data',(chunk)=> {
+      data +=chunk;
+    });
+    req.on("end",()=> {
+      let bookshelf = qs.parse(data);
+      this.bookshelf.updateBookshelf(id, bookshelf);
+      res.writeHead(200, {
+        location: "/bookshelfs",
+      });
+    }) 
+  } 
 }
 
 module.exports = BookshelfController;

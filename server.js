@@ -48,9 +48,12 @@ let server = http.createServer((req, res) => {
       break;
     }
     case "/bookshelfs": {
-      bookshelfController.showBookshelfListPage(req, res);
+      if (method === 'GET') {
+        bookshelfController.findCategoryBook();
+      }
       break;
     }
+
     // case '/products/create': {
     //     if (method === 'GET') {
     //         productController.showProductFormCreate(req, res);
